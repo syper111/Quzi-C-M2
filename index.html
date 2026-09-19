@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>امتحان النمذجة الهدف ج</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --primary-glow: rgba(5, 150, 105, 0.35);
+            --accent-glow: rgba(4, 120, 87, 0.35);
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #03140e;
+            color: #ecfdf5;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        .bg-grid-pattern {
+            background-image: radial-gradient(circle at 50% 0%, rgba(5, 150, 105, 0.12) 0%, transparent 60%), radial-gradient(circle at 100% 100%, rgba(4, 120, 87, 0.08) 0%, transparent 50%), linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 35px 35px, 35px 35px;
+        }
+        
+        .ultra-glass {
+            background: rgba(3, 33, 23, 0.90);
+            backdrop-filter: blur(25px) saturate(200%);
+            -webkit-backdrop-filter: blur(25px) saturate(200%);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        @keyframes float-slow {
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-5px) rotate(0.3deg);
+            }
+        }
+        
+        .animate-float {
+            animation: float-slow 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-bar {
+            0%,
+            100% {
+                height: 35%;
+            }
+            50% {
+                height: 90%;
+            }
+        }
+        
+        .chart-bar-1 {
+            animation: pulse-bar 2.2s ease-in-out infinite;
+        }
+        
+        .chart-bar-2 {
+            animation: pulse-bar 1.8s ease-in-out infinite 0.3s;
+        }
+        
+        .chart-bar-3 {
+            animation: pulse-bar 2.5s ease-in-out infinite 0.6s;
+        }
+        
+        .chart-bar-4 {
+            animation: pulse-bar 2.0s ease-in-out infinite 0.9s;
+        }
+        
+        @keyframes holo-pulse {
+            0%,
+            100% {
+                box-shadow: 0 0 30px rgba(5, 150, 105, 0.3), inset 0 0 15px rgba(5, 150, 105, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 60px rgba(5, 150, 105, 0.5), inset 0 0 25px rgba(5, 150, 105, 0.3);
+            }
+        }
+        
+        .holo-celebrate {
+            animation: holo-pulse 2.5s infinite ease-in-out;
+        }
+        
+        @keyframes shake-3d {
+            0%,
+            100% {
+                transform: translateX(0) scale(1);
+            }
+            20% {
+                transform: translateX(-10px) scale(1.01);
+            }
+            40% {
+                transform: translateX(10px) scale(1.01);
+            }
+            60% {
+                transform: translateX(-6px) scale(1.01);
+            }
+            80% {
+                transform: translateX(6px) scale(1.01);
+            }
+        }
+        
+        .unanswered-card {
+            border: 2px solid #f43f5e !important;
+            box-shadow: 0 0 35px rgba(244, 63, 94, 0.5) !important;
+            animation: shake-3d 0.5s ease-in-out;
+            background: rgba(244, 63, 94, 0.05) !important;
+        }
+        
+        .input-error-glow {
+            border-color: #f43f5e !important;
+            box-shadow: 0 0 25px rgba(244, 63, 94, 0.5) !important;
+            background: rgba(244, 63, 94, 0.08) !important;
+            animation: shake-3d 0.4s ease-in-out;
+        }
+        
+        .option-card-input:checked+.option-card-content {
+            border-color: #059669;
+            background: rgba(5, 150, 105, 0.18);
+            box-shadow: 0 0 20px rgba(5, 150, 105, 0.25);
+        }
+        
+        .option-card-input:checked+.option-card-content .radio-dot {
+            border-color: #059669;
+            background-color: #059669;
+            box-shadow: 0 0 10px #059669;
+        }
+        
+        .option-card-input:checked+.option-card-content .radio-dot div {
+            opacity: 1;
+        }
+        
+        .correction-option-card-input:checked+.correction-option-card-content {
+            border-color: #047857;
+            background: rgba(4, 120, 87, 0.18);
+            box-shadow: 0 0 20px rgba(4, 120, 87, 0.25);
+        }
+        
+        .correction-option-card-input:checked+.correction-option-card-content .radio-dot {
+            border-color: #047857;
+            background-color: #047857;
+            box-shadow: 0 0 10px #047857;
+        }
+        
+        .correction-option-card-input:checked+.correction-option-card-content .radio-dot div {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="bg-grid-pattern flex flex-col min-h-screen m-0 p-0 w-full">
+
+    <!-- Anti-Cheat Warning Modal -->
+    <div id="cheat-modal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-xl hidden flex items-center justify-center p-4">
+        <div class="ultra-glass border-rose-500/50 bg-slate-900/95 max-w-md w-full p-6 sm:p-8 rounded-3xl text-center space-y-5 shadow-2xl shadow-rose-500/20">
+            <div class="inline-block p-4 bg-rose-500/20 border border-rose-500/30 rounded-full text-rose-400 animate-bounce">
+                <svg class="w-10 h-10 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+            </div>
+            <div class="space-y-2">
+                <h3 class="text-xl sm:text-2xl font-black text-rose-400">⚠️ تم ضبط محاولة غش!</h3>
+                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">تم رصد مغادرتك لصفحة الامتحان أو تبديل التبويب. وفقاً لتعليمات الأمان الصارمة، تم احتساب النتيجة <span class="text-rose-400 font-bold">صفر (0)</span> وإنهاء المحاولة فوراً.</p>
+            </div>
+            <button onclick="handleCheatZeroScore()" class="w-full py-3.5 bg-gradient-to-r from-rose-500 to-red-600 hover:from-rose-400 hover:to-red-500 text-white font-black rounded-2xl text-sm transition-all shadow-lg shadow-rose-500/30">
+                حسناً
+            </button>
+        </div>
+    </div>
+
+    <!-- Exit Confirmation Modal -->
+    <div id="exit-modal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-xl hidden flex items-center justify-center p-4">
+        <div class="ultra-glass border-slate-700 bg-slate-900/95 max-w-sm w-full p-6 sm:p-8 rounded-3xl text-center space-y-5 shadow-2xl">
+            <div class="inline-block p-4 bg-emerald-700/20 border border-emerald-600/30 rounded-full text-emerald-400">
+                <svg class="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                </svg>
+            </div>
+            <div class="space-y-2">
+                <h3 class="text-lg font-black text-white">هل أنت متأكدة من الخروج؟</h3>
+                <p class="text-xs text-emerald-200/70">سيتم إغلاق الاختبار واعتماد النتيجة النهائية الحالية.</p>
+            </div>
+            <div class="flex gap-3 pt-2">
+                <button onclick="confirmExit()" class="flex-1 py-3 bg-gradient-to-r from-rose-500 to-red-600 hover:from-rose-400 text-white font-black rounded-xl text-xs transition-all shadow-lg shadow-rose-500/20">
+                    نعم، خروج
+                </button>
+                <button onclick="closeExitModal()" class="flex-1 py-3 bg-emerald-950 hover:bg-emerald-900 text-emerald-300 font-bold rounded-xl text-xs transition-all border border-emerald-800">
+                    إلغاء
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Full-Screen Container -->
+    <main class="flex-grow flex items-center justify-center w-full p-3 sm:p-6 my-auto z-10">
+        <div class="w-full max-w-4xl ultra-glass rounded-3xl overflow-hidden transition-all duration-500">
+
+            <!-- Welcome View -->
+            <div id="welcome-view" class="p-6 sm:p-10 space-y-6">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-emerald-950/40 p-6 rounded-3xl border border-emerald-900/60 shadow-inner">
+                    <div class="lg:col-span-7 space-y-3 text-right">
+                        <div class="inline-block text-[11px] bg-emerald-900/40 text-emerald-300 px-3 py-1 rounded-lg border border-emerald-700/40 font-bold">
+                            تكنولوجيا المعلومات المستوى الثاني | الصف العاشر
+                        </div>
+                        <h2 class="text-2xl sm:text-4xl font-black tracking-tight text-white bg-clip-text text-transparent bg-gradient-to-r from-white via-emerald-200 to-emerald-400">امتحان النمذجة الهدف ج</h2>
+                        <p class="text-xs sm:text-sm text-emerald-200/70 font-medium leading-relaxed">اختبار تفاعلي شامل لقياس مهارات تحليل البيانات، الاتجاهات، واللوحات المعلوماتية بدقة واحترافية.</p>
+                    </div>
+
+                    <div class="lg:col-span-5 relative p-4 rounded-2xl bg-gradient-to-b from-emerald-950/80 to-slate-950/90 border border-emerald-800/40 shadow-xl overflow-hidden animate-float">
+                        <div class="absolute -right-8 -top-8 w-24 h-24 bg-emerald-600/10 rounded-full blur-xl"></div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[10px] font-black text-emerald-300">مخطط أعمدة التحليل (Chart)</span>
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                        </div>
+                        <div class="h-20 flex items-end justify-center gap-3 px-2 pt-3 border-b border-emerald-900/60">
+                            <div class="w-7 bg-gradient-to-t from-emerald-800 to-emerald-600 rounded-t-lg chart-bar-1"></div>
+                            <div class="w-7 bg-gradient-to-t from-teal-800 to-emerald-600 rounded-t-lg chart-bar-2"></div>
+                            <div class="w-7 bg-gradient-to-t from-green-800 to-emerald-500 rounded-t-lg chart-bar-3"></div>
+                            <div class="w-7 bg-gradient-to-t from-emerald-900 to-teal-600 rounded-t-lg chart-bar-4"></div>
+                        </div>
+                        <div class="flex justify-between items-center pt-2 text-[10px] text-emerald-400/80 font-semibold">
+                            <span>تمثيل بيانات النمذجة</span>
+                            <span>● لوحة تفاعلية</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 text-xs text-emerald-200 bg-emerald-950/50 px-6 py-3.5 rounded-2xl border border-emerald-900/60 shadow-inner">
+                    <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500"></span> إعداد المعلمة: <span class="font-bold text-white">نسرين قنديل</span></div>
+                    <div class="hidden sm:block text-emerald-800">|</div>
+                    <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-teal-500 shadow-sm shadow-teal-500"></span> بإشراف المهندس: <span class="font-bold text-emerald-300">إبراهيم المدادحة</span></div>
+                </div>
+
+                <div class="bg-rose-500/10 border border-rose-500/30 rounded-2xl p-4 sm:p-5 max-w-xl mx-auto text-rose-300 text-xs sm:text-sm flex items-start gap-3 text-right shadow-inner">
+                    <svg class="w-6 h-6 shrink-0 mt-0.5 text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                    </svg>
+                    <div class="leading-relaxed">
+                        <span class="font-bold block text-rose-400 mb-0.5">تنبيه هام جداً بشأن الغش:</span> نظام مراقبة صارم مفعل طوال فترة الاختبار (وحتى أثناء جولة التصحيح). مغادرة الصفحة أو تبديل التبويب ستؤدي فوراً إلى <span class="font-bold underline">احتساب النتيجة (صفر) وإلغاء المحاولة</span>!
+                    </div>
+                </div>
+
+                <div class="max-w-sm mx-auto space-y-2 text-right pt-2">
+                    <label class="block text-xs font-bold text-emerald-200">الاسم الثلاثي للطالبة:</label>
+                    <div class="relative">
+                        <input type="text" id="student-name" placeholder="اكتبي اسمك هنا..." class="w-full px-5 py-4 bg-emerald-950/80 border border-emerald-800/80 rounded-2xl text-white text-center text-sm font-bold focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/15 transition shadow-inner placeholder-emerald-700">
+                    </div>
+                </div>
+
+                <div class="pt-2 text-center">
+                    <button onclick="startExam()" class="w-full max-w-sm py-4 bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-800 hover:from-emerald-500 hover:to-teal-700 text-white font-black rounded-2xl shadow-xl shadow-emerald-950/50 transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-sm sm:text-base tracking-wide border border-emerald-500/30">
+                        بدء الاختبار الآن 🚀
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Form View -->
+            <div id="quiz-view" class="hidden p-4 sm:p-8 space-y-6">
+                <div class="bg-emerald-950/50 border border-emerald-900/70 rounded-2xl p-4 sm:p-5 flex flex-col items-center justify-center text-center gap-2 shadow-inner">
+                    <h1 class="text-xs sm:text-sm font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-300">تكنولوجيا المعلومات المستوى الثاني | الصف العاشر</h1>
+                    <div id="header-badge" class="text-xs bg-emerald-900/40 text-emerald-300 px-4 py-1.5 rounded-full border border-emerald-700/40 font-bold">
+                        الطالبة: ---
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-between items-center border-b border-emerald-900/60 pb-4 gap-3">
+                    <div class="flex flex-col">
+                        <span id="quiz-title-tag" class="text-xs font-bold text-emerald-300 bg-emerald-900/40 px-4 py-1.5 rounded-full border border-emerald-700/40 inline-block">امتحان النمذجة الهدف ج</span>
+                        <span class="text-xs text-emerald-300/60 mt-2 px-1">عدد الأسئلة: <span class="text-white font-bold" id="questions-count-label">20 سؤالاً</span> | العلامة الكلية: <span class="text-white font-bold" id="total-score-label">40 علامة</span>                        (علامتان لكل سؤال)</span>
+                    </div>
+                    <span id="warning-missing-tag" class="text-xs text-rose-400 bg-rose-500/10 px-3.5 py-1.5 rounded-full border border-rose-500/20 font-bold flex items-center gap-1.5 shrink-0">
+                        <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span> ⚠️ يرجى الإجابة على كافة الأسئلة
+                    </span>
+                </div>
+
+                <div id="questions-form-container" class="space-y-6"></div>
+
+                <div class="pt-6 border-t border-emerald-900/60 text-center">
+                    <button onclick="submitExamForm()" class="w-full sm:w-auto px-12 py-4 bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-800 hover:from-emerald-500 hover:to-teal-700 text-white font-black rounded-2xl text-sm sm:text-base transition-all shadow-xl shadow-emerald-950/50 transform hover:-translate-y-0.5 border border-emerald-500/30">
+                        تسليم الإجابات وعرض النتيجة ✨
+                    </button>
+                </div>
+            </div>
+
+            <!-- Correction View -->
+            <div id="correction-view" class="hidden p-4 sm:p-8 space-y-6 text-right">
+                <div class="bg-emerald-950/50 border border-emerald-900/70 rounded-2xl p-4 sm:p-5 flex flex-col items-center justify-center text-center gap-2 shadow-inner">
+                    <h2 class="text-base sm:text-lg font-black text-emerald-400">🔄 جولة تصحيح الأسئلة (فرصة واحدة)</h2>
+                    <p class="text-xs text-emerald-200/70">أيتها الطالبة المتألقة، قومي بمراجعة هذه الأسئلة وإعادة اختيار الإجابة الأدق لرفع نتيجتك النهائية!</p>
+                </div>
+
+                <div class="flex justify-between items-center border-b border-emerald-900/60 pb-3">
+                    <span class="text-xs text-emerald-300 font-bold">الأسئلة الخاطئة المراد تصحيحها</span>
+                    <span id="correction-warning-tag" class="text-xs text-rose-400 bg-rose-500/10 px-3.5 py-1 rounded-full border border-rose-500/20 font-bold flex items-center gap-1.5 shrink-0">
+                        <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span> ⚠️ يرجى الإجابة على كافة الأسئلة أدناه
+                    </span>
+                </div>
+
+                <div id="correction-questions-container" class="space-y-6"></div>
+
+                <div class="pt-6 border-t border-emerald-900/60 text-center">
+                    <button onclick="submitCorrectionForm()" class="w-full sm:w-auto px-12 py-4 bg-gradient-to-r from-teal-700 via-emerald-700 to-green-800 hover:opacity-90 text-white font-black rounded-2xl text-sm sm:text-base transition-all shadow-xl shadow-emerald-950/50 border border-emerald-500/30">
+                        اعتماد التصحيح وتحديث النتيجة النهائية ✨
+                    </button>
+                </div>
+            </div>
+
+            <!-- Result View -->
+            <div id="result-view" class="hidden p-6 sm:p-12 text-center space-y-8">
+                <div id="result-icon-container" class="inline-block p-6 rounded-full mb-1 transition-all duration-500">
+                    <svg class="w-14 h-14 mx-auto animate-float" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                    </svg>
+                </div>
+
+                <div class="space-y-2">
+                    <h3 id="result-heading" class="text-2xl sm:text-4xl font-black text-white tracking-tight"></h3>
+                    <p id="result-subheading" class="text-xs sm:text-sm text-emerald-200/70 max-w-lg mx-auto font-medium"></p>
+                </div>
+
+                <div class="bg-emerald-950/60 border border-emerald-900/70 p-6 sm:p-8 rounded-3xl max-w-lg mx-auto space-y-6 shadow-2xl relative overflow-hidden backdrop-blur-2xl">
+                    <div class="absolute -right-16 -top-16 w-32 h-32 bg-emerald-700/10 rounded-full blur-2xl"></div>
+                    <div class="absolute -left-16 -bottom-16 w-32 h-32 bg-teal-700/10 rounded-full blur-2xl"></div>
+
+                    <div class="flex items-center justify-between border-b border-emerald-900/60 pb-3 relative z-10">
+                        <span class="text-xs text-emerald-300/70 font-semibold">اسم الطالبة:</span>
+                        <span id="res-student-name" class="font-bold text-sm text-emerald-300 bg-emerald-900/40 px-3.5 py-1 rounded-xl border border-emerald-700/40"></span>
+                    </div>
+
+                    <div class="relative z-10 py-2 flex flex-col items-center justify-center">
+                        <div class="relative flex items-center justify-center w-36 h-36 rounded-full bg-emerald-950/90 border-4 border-emerald-900 shadow-inner">
+                            <div class="text-center">
+                                <span id="res-final-percentage" class="block text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">0%</span>
+                                <span class="text-[10px] text-emerald-400/70 font-bold uppercase tracking-wider">النسبة المئوية</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 text-center space-y-1">
+                            <div class="text-2xl sm:text-3xl font-black text-white">
+                                <span id="res-total-score-num" class="text-emerald-400">0</span>
+                                <span class="text-emerald-800 text-lg">/</span>
+                                <span id="res-max-score-num" class="text-emerald-300/60 text-lg">40</span>
+                            </div>
+                            <span class="text-xs text-emerald-200/70 font-semibold">مجموع العلامات التراكمية</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-1.5 relative z-10">
+                        <div class="w-full bg-emerald-950 h-3 rounded-full overflow-hidden p-0.5 border border-emerald-900">
+                            <div id="res-progress-bar" class="bg-gradient-to-r from-emerald-600 via-teal-600 to-green-500 h-full rounded-full transition-all duration-1000 ease-out" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="result-actions" class="flex flex-col sm:flex-row justify-center gap-4 pt-4 border-t border-emerald-900/60"></div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="ultra-glass border-t border-emerald-900/60 py-4 text-center text-xs text-emerald-300/70 w-full z-10">
+        امتحان النمذجة الهدف ج | إعداد المعلمة: نسرين قنديل | بإشراف المهندس: إبراهيم المدادحة
+    </footer>
+
+    <script>
+        const originalQuestionsData = [{
+            id: 1,
+            goal: "الهدف (ج)",
+            question: "ما هو الإجراء الموصى به عند استخدام لوحة المعلومات لضمان عدم تقديم معلومات غير دقيقة؟",
+            options: [{
+                text: "الاعتماد فقط على أفكار العضو الجديد في الفريق.",
+                isCorrect: false
+            }, {
+                text: "التأكد من عدم وجود بيانات مفقودة أو أخطاء في البيانات قد تؤدي لقرارات غير فعالة.",
+                isCorrect: true
+            }, {
+                text: "إهمال البيانات السالبة تماماً لتوفير الوقت.",
+                isCorrect: false
+            }, {
+                text: "زيادة عدد الألوان العشوائية في الرسوم البيانية.",
+                isCorrect: false
+            }]
+        }, {
+            id: 2,
+            goal: "الهدف (ج)",
+            question: "ماذا يمثل \"مخطط الخط القطري\" عندما يتحرك هبوطاً بمرور الوقت؟",
+            options: [{
+                text: "استقرار تام في المبيعات.",
+                isCorrect: false
+            }, {
+                text: "حالة شاذة في الربع الأول.",
+                isCorrect: false
+            }, {
+                text: "اتجاه هبوطياً بمرور الوقت.",
+                isCorrect: true
+            }, {
+                text: "اتجاه تصاعدي في الأرباح.",
+                isCorrect: false
+            }]
+        }, {
+            id: 3,
+            goal: "الهدف (ج)",
+            question: "لماذا يُعد من الضروري طرح تساؤلات مثل \"ما هو حجم الشركة؟ وأين تعمل؟ ومن هم منافسوها؟\" أثناء مراجعة لوحة المعلومات؟",
+            options: [{
+                text: "لتحديد رواتب الموظفين الجدد بدقة.",
+                isCorrect: false
+            }, {
+                text: "لزيادة تكاليف التشغيل السنوية للشركة.",
+                isCorrect: false
+            }, {
+                text: "لإلغاء الحاجة إلى استخدام الجداول المحورية.",
+                isCorrect: false
+            }, {
+                text: "لضمان فهم سياق الشركة ووضعها وعدم إساءة تفسير المعلومات.",
+                isCorrect: true
+            }]
+        }, {
+            id: 4,
+            goal: "الهدف (ج)",
+            question: "كيف تساعد \"عناصر التحكم في النموذج\" (مثل القوائم المنسدلة وعناصر تحكم الزيادة والنقصان) في لوحة المعلومات؟",
+            options: [{
+                text: "تتسبب في تضليل الإدارة العليا بالمعلومات.",
+                isCorrect: false
+            }, {
+                text: "تمكن المستخدم من التحكم في عرض البيانات وتغيراتها لتسهيل اتخاذ القرار.",
+                isCorrect: true
+            }, {
+                text: "تُستخدم لطباعة المستندات الورقية فقط.",
+                isCorrect: false
+            }, {
+                text: "تمنع التنسيق الشرطي للألوان.",
+                isCorrect: false
+            }]
+        }, {
+            id: 5,
+            goal: "الهدف (ج)",
+            question: "ما هو التأثير السلبي المحتمل لوجود \"روابط خاطئة بين العوامل غير ذات الصلة\" في لوحة المعلومات؟",
+            options: [{
+                text: "إنشاء معلومات خاطئة قد تؤثر سلباً على قرارات الشركة.",
+                isCorrect: true
+            }, {
+                text: "تحسين دقة القرارات التجارية بشكل ملحوظ.",
+                isCorrect: false
+            }, {
+                text: "منع إنشاء معلومات غير دقيقة.",
+                isCorrect: false
+            }, {
+                text: "تسريع وتيرة العمليات اليومية.",
+                isCorrect: false
+            }]
+        }, {
+            id: 6,
+            goal: "الهدف (ج)",
+            question: "ماذا يتطلب البحث عن الاتجاهات والأنماط والحالات الشاذة في أنشطة الشركة؟",
+            options: [{
+                text: "اتخاذ قرارات عشوائية سريعة دون مراجعة الحقائق.",
+                isCorrect: false
+            }, {
+                text: "مراعاة جميع المعلومات المتاحة والنظر في جميع الاحتمالات الممكنة لمساعدة الإدارة على التنبؤ.",
+                isCorrect: true
+            }, {
+                text: "الاكتفاء ببيانات شهر يناير فقط وتجاهل باقي الأشهر.",
+                isCorrect: false
+            }, {
+                text: "التركيز على خط فكري واحد وعدم تغيير اتجاه البحث.",
+                isCorrect: false
+            }]
+        }, {
+            id: 7,
+            goal: "الهدف (ج)",
+            question: "ما هو المثال الذي تم ذكره في النص ليوضح حالة \"مرض دانا\" وكيف أثرت على مبيعات الربع الأول؟",
+            options: [{
+                text: "نمط متكرر وثابت يحدث في كل أسبوع.",
+                isCorrect: false
+            }, {
+                text: "اتجاه تصاعدي في مبيعات الآيس كريم.",
+                isCorrect: false
+            }, {
+                text: "حالة شاذة في البيانات تبدو غير طبيعية بسبب ظروف صحية وتوقف عن العمل مؤقتاً.",
+                isCorrect: true
+            }, {
+                text: "استخدام خاطئ لخطوط المؤشر.",
+                isCorrect: false
+            }]
+        }, {
+            id: 8,
+            goal: "الهدف (ج)",
+            question: "ما هي إحدى الأسئلة الرئيسية التي يجب أن تسألها لنفسك لتقييم ما إذا كانت لوحة المعلومات \"متحيزة أم لا\"؟",
+            options: [{
+                text: "كم عدد أزرار الراديو الموجودة في الصفحة؟",
+                isCorrect: false
+            }, {
+                text: "هل تأكدت من أنك لم تحدد البيانات لدعم أفكارك المسبقة؟",
+                isCorrect: true
+            }, {
+                text: "ما هو لون الخلفية المستخدم في الجدول؟",
+                isCorrect: false
+            }, {
+                text: "هل الموظفون سعداء برواتبهم؟",
+                isCorrect: false
+            }]
+        }, {
+            id: 9,
+            goal: "الهدف (ج)",
+            question: "ما هو دور \"المخصصات\" (مثل الوقت والميزانية) في عرض لوحة المعلومات؟",
+            options: [{
+                text: "تلغي تماماً أي احتمال لوجود بيانات شاذة.",
+                isCorrect: false
+            }, {
+                text: "تزيد من حجم عينة البيانات تلقائياً.",
+                isCorrect: false
+            }, {
+                text: "تُستعمل كبديل للرسوم البيانية الديناميكية.",
+                isCorrect: false
+            }, {
+                text: "تعتبر قيوداً يمكن أن تؤثر على اتخاذ القرارات في الشركة.",
+                isCorrect: true
+            }]
+        }, {
+            id: 10,
+            goal: "الهدف (ج)",
+            question: "لماذا يُطلب ألا تكون لوحة المعلومات عبارة عن \"مجموعة عشوائية من المخططات التي لا علاقة لها ببعضها\"؟",
+            options: [{
+                text: "لأن اللوحة الفعالة يجب أن ترتبط باحتياجات الشركة وتدعم عملية صنع القرار بمدخلات ذات مغزى.",
+                isCorrect: true
+            }, {
+                text: "لتصبح أثقل حجماً عند التحميل على الإنترنت.",
+                isCorrect: false
+            }, {
+                text: "لتكون مطابقة لبيانات الشركات المنافسة تماماً.",
+                isCorrect: false
+            }, {
+                text: "لأن الرسومات العشوائية تزيد من أرباح المبيعات.",
+                isCorrect: false
+            }]
+        }, {
+            id: 11,
+            goal: "الهدف (ج)",
+            question: "ما هي الفائدة من دمج الجداول المحورية مع المخططات البيانية؟",
+            options: [{
+                text: "إخفاء الأخطاء الإملائية في التقارير المالية.",
+                isCorrect: false
+            }, {
+                text: "تقديم ملخصات بيانات دقيقة ومساعدة المستخدمين على رؤية الصورة بشكل أفضل لاتخاذ قرارات فعالة.",
+                isCorrect: true
+            }, {
+                text: "تصعيب عملية استخراج الأنماط على الإدارة.",
+                isCorrect: false
+            }, {
+                text: "تقليل تفاعل المستخدم مع لوحة المعلومات.",
+                isCorrect: false
+            }]
+        }, {
+            id: 12,
+            goal: "الهدف (ج)",
+            question: "ماذا تعني عبارة \"هل هناك أي عوامل بيئية لدى الشركة يمكن أن تؤثر على دقة المعلومات؟\" في سياق مراجعة لوحة المعلومات؟",
+            options: [{
+                text: "قياس درجة حرارة الغرفة التي يعمل بها موظفو الإدارة.",
+                isCorrect: false
+            }, {
+                text: "تقليل استهلاك الورق داخل مكاتب الشركة.",
+                isCorrect: false
+            }, {
+                text: "الانتباه للعوامل المحيطة التي قد تغير من مسار أو نتائج البيانات وتؤثر على قرارات الشركة.",
+                isCorrect: true
+            }, {
+                text: "مراقبة حركة مرور السيارات في الشوارع الرئيسية.",
+                isCorrect: false
+            }]
+        }, {
+            id: 13,
+            goal: "الهدف (ج)",
+            question: "كيف يُساهم \"التنسيق الشرطي\" في فاعلية عرض لوحة المعلومات؟",
+            options: [{
+                text: "يلفت الانتباه إلى معلومات محددة وتحديد نظام الألوان لتسهيل الفهم.",
+                isCorrect: true
+            }, {
+                text: "يمنع المستخدم من تغيير القيم في القوائم المنسدلة.",
+                isCorrect: false
+            }, {
+                text: "يقوم بحذف البيانات الشاذة تلقائياً من الجداول.",
+                isCorrect: false
+            }, {
+                text: "يثبت حجم الرسوم البيانية على شاشة واحدة.",
+                isCorrect: false
+            }]
+        }, {
+            id: 14,
+            goal: "الهدف (ج)",
+            question: "في سياق تحليل جدول المبيعات (مثل بيانات عام 2022)، ماذا كان يمثل انخفاض مبيعات الربع الأول لبعض الأعضاء مثل \"دانا\"؟",
+            options: [{
+                text: "خطأ في النظام البرمجى للشركة.",
+                isCorrect: false
+            }, {
+                text: "اتجاه عام لجميع الموظفين طوال العام.",
+                isCorrect: false
+            }, {
+                text: "نمط منتظم يتكرر في نفس الموعد كل سنة.",
+                isCorrect: false
+            }, {
+                text: "ظروف خاصة (مثل المرض) أدت لنتائج غير طبيعية تم تفسيرها لاحقاً.",
+                isCorrect: true
+            }]
+        }, {
+            id: 15,
+            goal: "الهدف (ج)",
+            question: "ما هي إحدى النطاقات التي يجب التأكد منها لتجنب تضليل صانعي القرار؟",
+            options: [{
+                text: "التأكد من شمولية العينة وعدم التأثر بحجم عينة صغير قد يؤدي إلى سوء تفسير.",
+                isCorrect: true
+            }, {
+                text: "إلغاء استخدام الجداول العادية والاعتماد على النصوص فقط.",
+                isCorrect: false
+            }, {
+                text: "إخفاء أسباب القرارات التي اتخذتها الإدارة سابقاً.",
+                isCorrect: false
+            }, {
+                text: "ترك لوحة المعلومات دون أي أزرار تفاعلية.",
+                isCorrect: false
+            }]
+        }, {
+            id: 16,
+            goal: "الهدف (ج)",
+            question: "ما هو التوصية الأساسية للمحترفين والعوام عند تحليل البيانات بحسب النص الفلسفي؟",
+            options: [{
+                text: "الثقة المطلقة بنسبة 100% في كل رقم يظهر في لوحة المعلومات.",
+                isCorrect: false
+            }, {
+                text: "الإقرار بأن تحليل البيانات لا يُفهم بشكل صحيح بنسبة 100% طوال الوقت حتى من قِبل المحترفين.",
+                isCorrect: true
+            }, {
+                text: "تجنب قراءة الجداول المحورية نهائياً.",
+                isCorrect: false
+            }, {
+                text: "الاعتماد على الحدس الشخصي بدلاً من البيانات.",
+                isCorrect: false
+            }]
+        }, {
+            id: 17,
+            goal: "الهدف (ج)",
+            question: "ما هو الغرض من استخدام أزرار الراديو ومربعات الاختيار (الميزات التفاعلية)؟",
+            options: [{
+                text: "مساعدة المستخدم على رؤية البيانات وفهمها بعمق أكبر من خلال التفاعل معها.",
+                isCorrect: true
+            }, {
+                text: "تقليل جودة عرض الرسوم البيانية الديناميكية.",
+                isCorrect: false
+            }, {
+                text: "زيادة عدد الأخطاء المتعمدة في التقارير.",
+                isCorrect: false
+            }, {
+                text: "تغيير نشاط الشركة التجاري بشكل فجائي.",
+                isCorrect: false
+            }]
+        }, {
+            id: 18,
+            goal: "الهدف (ج)",
+            question: "لماذا تُشهد محلات السوبر ماركت ومحلات الهدايا زيادة في المبيعات قبل العطلات والمهرجانات مباشرة؟",
+            options: [{
+                text: "لأنه يمثل نمطاً متكرراً في أوقات محددة من السنة يمكن التنبؤ به.",
+                isCorrect: true
+            }, {
+                text: "لأنه يعتبر حالة شاذة لن تتكرر أبداً.",
+                isCorrect: false
+            }, {
+                text: "بسبب سوء الأحوال الجوية وارتفاع الحرارة.",
+                isCorrect: false
+            }, {
+                text: "بسبب نقص المخزون المفاجئ في الأسواق.",
+                isCorrect: false
+            }]
+        }, {
+            id: 19,
+            goal: "الهدف (ج)",
+            question: "ماذا يُقصد بأن تكون لوحة المعلومات \"ليست متحيزة\"؟",
+            options: [{
+                text: "أن تحتوي على عدد قليل جداً من الصفوف والأعمدة.",
+                isCorrect: false
+            }, {
+                text: "ألا تحتوي على تفسيرات خاطئة أو استنتاجات غير دقيقة تخدم فكرة مسبقة.",
+                isCorrect: true
+            }, {
+                text: "أن تكون ألوانها محايدة باللونين الأبيض والأسود فقط.",
+                isCorrect: false
+            }, {
+                text: "ألا تُعرض على الإدارة العليا للشركة.",
+                isCorrect: false
+            }]
+        }, {
+            id: 20,
+            goal: "الهدف (ج)",
+            question: "ما هي الخطوة الأولى التي يُنصح بالبدء بها عند مراجعة لوحة المعلومات الخاصة بك لاتخاذ قرارات الشركة؟",
+            options: [{
+                text: "التفكير في لوحة التحكم التي تم إنشاؤها ومدى قدرة الرسوم البيانية والاتجاهات المستخلصة على دعم اتخاذ القرار.",
+                isCorrect: true
+            }, {
+                text: "حذف جميع البيانات القديمة للعام السابق.",
+                isCorrect: false
+            }, {
+                text: "تعديل ميزانية الشركة قبل قراءة النتائج.",
+                isCorrect: false
+            }, {
+                text: "تغيير أسماء جميع الموظفين في الجدول.",
+                isCorrect: false
+            }]
+        }];
+
+        let studentFullName = "";
+        let userAnswers = {};
+        let wrongQuestionsList = [];
+        let correctionAnswers = {};
+        let examSubmitted = false;
+        let isCheated = false;
+
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden && !examSubmitted && !isCheated) {
+                isCheated = true;
+                document.getElementById("cheat-modal").classList.remove("hidden");
+            }
+        });
+
+        window.addEventListener("blur", () => {
+            if (!examSubmitted && !isCheated) {
+                isCheated = true;
+                document.getElementById("cheat-modal").classList.remove("hidden");
+            }
+        });
+
+        function handleCheatZeroScore() {
+            document.getElementById("cheat-modal").classList.add("hidden");
+            document.getElementById("welcome-view").classList.add("hidden");
+            document.getElementById("quiz-view").classList.add("hidden");
+            document.getElementById("correction-view").classList.add("hidden");
+            document.getElementById("result-view").classList.remove("hidden");
+
+            document.getElementById("res-student-name").textContent = studentFullName || "طالبة";
+            document.getElementById("res-final-percentage").textContent = "0%";
+            document.getElementById("res-total-score-num").textContent = "0";
+            document.getElementById("res-max-score-num").textContent = (originalQuestionsData.length * 2);
+            document.getElementById("res-progress-bar").style.width = "0%";
+
+            document.getElementById("result-icon-container").className = "inline-block p-6 rounded-full mb-1 bg-rose-500/20 text-rose-400 border border-rose-500/30";
+            document.getElementById("result-heading").textContent = "تم إنهاء الاختبار بسبب رصد مغادرة الصفحة (0)";
+            document.getElementById("result-subheading").textContent = "وفقاً لتعليمات الأمان، تم اعتماد النتيجة صفر نظراً لمغادرة تبويب الامتحان.";
+
+            document.getElementById("result-actions").innerHTML = `
+                <button onclick="location.reload()" class="px-8 py-3.5 bg-emerald-950 hover:bg-emerald-900 text-emerald-200 font-bold rounded-2xl text-xs transition-all border border-emerald-800">
+                    إعادة المحاولة 🔄
+                </button>
+            `;
+            examSubmitted = true;
+        }
+
+        function startExam() {
+            const nameInput = document.getElementById("student-name");
+            studentFullName = nameInput.value.trim();
+            if (!studentFullName) {
+                nameInput.classList.add("input-error-glow");
+                setTimeout(() => nameInput.classList.remove("input-error-glow"), 1000);
+                return;
+            }
+
+            document.getElementById("header-badge").textContent = `الطالبة: ${studentFullName}`;
+            document.getElementById("welcome-view").classList.add("hidden");
+            document.getElementById("quiz-view").classList.remove("hidden");
+
+            renderQuestions();
+        }
+
+        function shuffleArray(array) {
+            let arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        let shuffledQuestions = [];
+
+        function renderQuestions() {
+            const container = document.getElementById("questions-form-container");
+            container.innerHTML = "";
+            shuffledQuestions = shuffleArray(originalQuestionsData);
+
+            shuffledQuestions.forEach((q, index) => {
+                const qNum = index + 1;
+                const shuffledOpts = shuffleArray(q.options);
+
+                const card = document.createElement("div");
+                card.className = "ultra-glass p-5 sm:p-6 rounded-2xl space-y-4 border border-emerald-900/60 transition-all";
+                card.id = `question-card-${q.id}`;
+
+                let html = `
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-emerald-300 bg-emerald-900/40 px-3 py-1 rounded-lg border border-emerald-700/40">السؤال ${qNum} من ${originalQuestionsData.length}</span>
+                        <span class="text-[11px] text-emerald-300/60 font-semibold">${q.goal}</span>
+                    </div>
+                    <h3 class="text-sm sm:text-base font-bold text-white leading-relaxed">${q.question}</h3>
+                    <div class="space-y-2.5 pt-2">
+                `;
+
+                shuffledOpts.forEach((opt) => {
+                    const isCorrectVal = opt.isCorrect ? "true" : "false";
+                    html += `
+                        <label class="block cursor-pointer">
+                            <input type="radio" name="q_${q.id}" value="${isCorrectVal}" class="option-card-input sr-only" onchange="clearUnansweredStyle(${q.id})">
+                            <div class="option-card-content flex items-center justify-between p-3.5 sm:p-4 rounded-xl border border-emerald-900/50 bg-emerald-950/30 hover:bg-emerald-950/60 transition-all">
+                                <span class="text-xs sm:text-sm text-emerald-100 font-medium">${opt.text}</span>
+                                <div class="radio-dot w-5 h-5 rounded-full border-2 border-emerald-800 flex items-center justify-center shrink-0 ml-3 transition-all">
+                                    <div class="w-2 h-2 rounded-full bg-white opacity-0 transition-opacity"></div>
+                                </div>
+                            </div>
+                        </label>
+                    `;
+                });
+
+                html += `</div>`;
+                card.innerHTML = html;
+                container.appendChild(card);
+            });
+        }
+
+        function clearUnansweredStyle(qId) {
+            const card = document.getElementById(`question-card-${qId}`);
+            if (card) {
+                card.classList.remove("unanswered-card");
+            }
+        }
+
+        function submitExamForm() {
+            let firstUnanswered = null;
+            let answeredCount = 0;
+
+            originalQuestionsData.forEach(q => {
+                const radios = document.getElementsByName(`q_${q.id}`);
+                let answered = false;
+                for (let r of radios) {
+                    if (r.checked) {
+                        answered = true;
+                        userAnswers[q.id] = r.value === "true";
+                        break;
+                    }
+                }
+                if (answered) {
+                    answeredCount++;
+                } else {
+                    const card = document.getElementById(`question-card-${q.id}`);
+                    if (card) {
+                        card.classList.add("unanswered-card");
+                        if (!firstUnanswered) firstUnanswered = card;
+                    }
+                }
+            });
+
+            if (answeredCount < originalQuestionsData.length) {
+                if (firstUnanswered) {
+                    firstUnanswered.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }
+                return;
+            }
+
+            let correctCount = 0;
+            wrongQuestionsList = [];
+            originalQuestionsData.forEach(q => {
+                if (userAnswers[q.id] === true) {
+                    correctCount++;
+                } else {
+                    wrongQuestionsList.push(q);
+                }
+            });
+
+            document.getElementById("quiz-view").classList.add("hidden");
+
+            if (wrongQuestionsList.length > 0) {
+                renderCorrectionQuestions();
+                document.getElementById("correction-view").classList.remove("hidden");
+            } else {
+                finalizeExamResults(correctCount);
+            }
+        }
+
+        function renderCorrectionQuestions() {
+            const container = document.getElementById("correction-questions-container");
+            container.innerHTML = "";
+
+            wrongQuestionsList.forEach((q, index) => {
+                const card = document.createElement("div");
+                card.className = "ultra-glass p-5 sm:p-6 rounded-2xl space-y-4 border border-emerald-700/30 transition-all";
+                card.id = `correction-card-${q.id}`;
+
+                let html = `
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-emerald-300 bg-emerald-900/40 px-3 py-1 rounded-lg border border-emerald-700/40">سؤال تصحيح رقم ${index + 1}</span>
+                        <span class="text-[11px] text-emerald-300/60 font-semibold">${q.goal}</span>
+                    </div>
+                    <h3 class="text-sm sm:text-base font-bold text-white leading-relaxed">${q.question}</h3>
+                    <div class="space-y-2.5 pt-2">
+                `;
+
+                const shuffledOpts = shuffleArray(q.options);
+                shuffledOpts.forEach((opt) => {
+                    const isCorrectVal = opt.isCorrect ? "true" : "false";
+                    html += `
+                        <label class="block cursor-pointer">
+                            <input type="radio" name="cq_${q.id}" value="${isCorrectVal}" class="correction-option-card-input sr-only" onchange="clearCorrectionUnanswered(${q.id})">
+                            <div class="correction-option-card-content flex items-center justify-between p-3.5 sm:p-4 rounded-xl border border-emerald-900/50 bg-emerald-950/30 hover:bg-emerald-950/60 transition-all">
+                                <span class="text-xs sm:text-sm text-emerald-100 font-medium">${opt.text}</span>
+                                <div class="radio-dot w-5 h-5 rounded-full border-2 border-emerald-800 flex items-center justify-center shrink-0 ml-3 transition-all">
+                                    <div class="w-2 h-2 rounded-full bg-white opacity-0 transition-opacity"></div>
+                                </div>
+                            </div>
+                        </label>
+                    `;
+                });
+
+                html += `</div>`;
+                card.innerHTML = html;
+                container.appendChild(card);
+            });
+        }
+
+        function clearCorrectionUnanswered(qId) {
+            const card = document.getElementById(`correction-card-${qId}`);
+            if (card) {
+                card.classList.remove("unanswered-card");
+            }
+        }
+
+        function submitCorrectionForm() {
+            let firstUnanswered = null;
+            let answeredCount = 0;
+
+            wrongQuestionsList.forEach(q => {
+                const radios = document.getElementsByName(`cq_${q.id}`);
+                let answered = false;
+                for (let r of radios) {
+                    if (r.checked) {
+                        answered = true;
+                        correctionAnswers[q.id] = r.value === "true";
+                        break;
+                    }
+                }
+                if (answered) {
+                    answeredCount++;
+                } else {
+                    const card = document.getElementById(`correction-card-${q.id}`);
+                    if (card) {
+                        card.classList.add("unanswered-card");
+                        if (!firstUnanswered) firstUnanswered = card;
+                    }
+                }
+            });
+
+            if (answeredCount < wrongQuestionsList.length) {
+                if (firstUnanswered) {
+                    firstUnanswered.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }
+                return;
+            }
+
+            let finalCorrectCount = 0;
+            originalQuestionsData.forEach(q => {
+                if (userAnswers[q.id] === true) {
+                    finalCorrectCount++;
+                } else if (correctionAnswers[q.id] === true) {
+                    finalCorrectCount++;
+                }
+            });
+
+            document.getElementById("correction-view").classList.add("hidden");
+            finalizeExamResults(finalCorrectCount);
+        }
+
+        function finalizeExamResults(correctCount) {
+            examSubmitted = true;
+            document.getElementById("result-view").classList.remove("hidden");
+
+            const totalQ = originalQuestionsData.length;
+            const finalScore = correctCount * 2;
+            const maxScore = totalQ * 2;
+            const percentage = Math.round((correctCount / totalQ) * 100);
+
+            document.getElementById("res-student-name").textContent = studentFullName;
+            document.getElementById("res-final-percentage").textContent = `${percentage}%`;
+            document.getElementById("res-total-score-num").textContent = finalScore;
+            document.getElementById("res-max-score-num").textContent = maxScore;
+
+            setTimeout(() => {
+                document.getElementById("res-progress-bar").style.width = `${percentage}%`;
+            }, 200);
+
+            const iconContainer = document.getElementById("result-icon-container");
+            const heading = document.getElementById("result-heading");
+            const subheading = document.getElementById("result-subheading");
+
+            if (percentage >= 80) {
+                iconContainer.className = "inline-block p-6 rounded-full mb-1 bg-emerald-900/40 text-emerald-400 border border-emerald-700/40 holo-celebrate";
+                heading.textContent = "أداء مذهل وممتاز! 🌟";
+                subheading.textContent = `أهلاً بكِ يا ${studentFullName}. لقد أبدعتِ تماماً في إظهار مهاراتك العالية في نمذجة البيانات وتحليلها بامتياز.`;
+                if (typeof confetti === 'function') {
+                    confetti({
+                        particleCount: 120,
+                        spread: 80,
+                        origin: {
+                            y: 0.6
+                        }
+                    });
+                }
+            } else if (percentage >= 50) {
+                iconContainer.className = "inline-block p-6 rounded-full mb-1 bg-teal-900/40 text-teal-400 border border-teal-700/40";
+                heading.textContent = "نتيجة جيدة جداً! 👏";
+                subheading.textContent = `أحسنتِ يا ${studentFullName}. لقد أتممتِ الاختبار بكفاءة واجتزتِ المعايير المطلوبة بنجاح.`;
+            } else {
+                iconContainer.className = "inline-block p-6 rounded-full mb-1 bg-amber-900/40 text-amber-400 border border-amber-700/40";
+                heading.textContent = "تمنياتي لكِ بالتوفيق والمحاولة مرة أخرى 💪";
+                subheading.textContent = `لا بأس يا ${studentFullName}، يمكنك مراجعة المادة التعليمية وإعادة المحاولة لتحقيق نتيجة أفضل.`;
+            }
+
+            document.getElementById("result-actions").innerHTML = `
+                <button onclick="openExitModal()" class="px-8 py-3.5 bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 text-white font-black rounded-2xl text-xs transition-all shadow-lg shadow-emerald-950/50 border border-emerald-500/30">
+                    خروج وإنهاء الاختبار 🚪
+                </button>
+            `;
+        }
+
+        function openExitModal() {
+            document.getElementById("exit-modal").classList.remove("hidden");
+        }
+
+        function closeExitModal() {
+            document.getElementById("exit-modal").classList.add("hidden");
+        }
+
+        function confirmExit() {
+            window.close();
+            document.body.innerHTML = `
+                <div class="flex items-center justify-center min-h-screen bg-slate-950 text-white text-center p-6">
+                    <div class="ultra-glass p-8 rounded-3xl max-w-md w-full space-y-4">
+                        <h2 class="text-2xl font-black text-emerald-400">تم إنهاء الاختبار بنجاح</h2>
+                        <p class="text-emerald-200/80 text-sm">شكراً لكِ يا ${studentFullName}. يمكنك إغلاق هذه النافذة بأمان.</p>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+
+</html>
