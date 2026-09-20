@@ -37,8 +37,13 @@
         }
         
         @keyframes float-slow {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-5px) rotate(0.3deg); }
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-5px) rotate(0.3deg);
+            }
         }
         
         .animate-float {
@@ -46,28 +51,62 @@
         }
         
         @keyframes pulse-bar {
-            0%, 100% { height: 35%; }
-            50% { height: 90%; }
+            0%,
+            100% {
+                height: 35%;
+            }
+            50% {
+                height: 90%;
+            }
         }
         
-        .chart-bar-1 { animation: pulse-bar 2.2s ease-in-out infinite; }
-        .chart-bar-2 { animation: pulse-bar 1.8s ease-in-out infinite 0.3s; }
-        .chart-bar-3 { animation: pulse-bar 2.5s ease-in-out infinite 0.6s; }
-        .chart-bar-4 { animation: pulse-bar 2.0s ease-in-out infinite 0.9s; }
+        .chart-bar-1 {
+            animation: pulse-bar 2.2s ease-in-out infinite;
+        }
+        
+        .chart-bar-2 {
+            animation: pulse-bar 1.8s ease-in-out infinite 0.3s;
+        }
+        
+        .chart-bar-3 {
+            animation: pulse-bar 2.5s ease-in-out infinite 0.6s;
+        }
+        
+        .chart-bar-4 {
+            animation: pulse-bar 2.0s ease-in-out infinite 0.9s;
+        }
         
         @keyframes holo-pulse {
-            0%, 100% { box-shadow: 0 0 30px rgba(5, 150, 105, 0.3), inset 0 0 15px rgba(5, 150, 105, 0.2); }
-            50% { box-shadow: 0 0 60px rgba(5, 150, 105, 0.5), inset 0 0 25px rgba(5, 150, 105, 0.3); }
+            0%,
+            100% {
+                box-shadow: 0 0 30px rgba(5, 150, 105, 0.3), inset 0 0 15px rgba(5, 150, 105, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 60px rgba(5, 150, 105, 0.5), inset 0 0 25px rgba(5, 150, 105, 0.3);
+            }
         }
         
-        .holo-celebrate { animation: holo-pulse 2.5s infinite ease-in-out; }
+        .holo-celebrate {
+            animation: holo-pulse 2.5s infinite ease-in-out;
+        }
         
         @keyframes shake-3d {
-            0%, 100% { transform: translateX(0) scale(1); }
-            20% { transform: translateX(-10px) scale(1.01); }
-            40% { transform: translateX(10px) scale(1.01); }
-            60% { transform: translateX(-6px) scale(1.01); }
-            80% { transform: translateX(6px) scale(1.01); }
+            0%,
+            100% {
+                transform: translateX(0) scale(1);
+            }
+            20% {
+                transform: translateX(-10px) scale(1.01);
+            }
+            40% {
+                transform: translateX(10px) scale(1.01);
+            }
+            60% {
+                transform: translateX(-6px) scale(1.01);
+            }
+            80% {
+                transform: translateX(6px) scale(1.01);
+            }
         }
         
         .unanswered-card {
@@ -84,35 +123,35 @@
             animation: shake-3d 0.4s ease-in-out;
         }
         
-        .option-card-input:checked + .option-card-content {
+        .option-card-input:checked+.option-card-content {
             border-color: #059669;
             background: rgba(5, 150, 105, 0.18);
             box-shadow: 0 0 20px rgba(5, 150, 105, 0.25);
         }
         
-        .option-card-input:checked + .option-card-content .radio-dot {
+        .option-card-input:checked+.option-card-content .radio-dot {
             border-color: #059669;
             background-color: #059669;
             box-shadow: 0 0 10px #059669;
         }
         
-        .option-card-input:checked + .option-card-content .radio-dot div {
+        .option-card-input:checked+.option-card-content .radio-dot div {
             opacity: 1;
         }
         
-        .correction-option-card-input:checked + .correction-option-card-content {
+        .correction-option-card-input:checked+.correction-option-card-content {
             border-color: #047857;
             background: rgba(4, 120, 87, 0.18);
             box-shadow: 0 0 20px rgba(4, 120, 87, 0.25);
         }
         
-        .correction-option-card-input:checked + .correction-option-card-content .radio-dot {
+        .correction-option-card-input:checked+.correction-option-card-content .radio-dot {
             border-color: #047857;
             background-color: #047857;
             box-shadow: 0 0 10px #047857;
         }
         
-        .correction-option-card-input:checked + .correction-option-card-content .radio-dot div {
+        .correction-option-card-input:checked+.correction-option-card-content .radio-dot div {
             opacity: 1;
         }
     </style>
@@ -197,8 +236,8 @@
 
                 <div class="flex flex-col sm:flex-row items-center justify-center gap-3 text-xs text-emerald-200 bg-emerald-950/50 px-6 py-3.5 rounded-2xl border border-emerald-900/60 shadow-inner">
                     <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500"></span> إعداد المعلمة: <span class="font-bold text-white">نسرين قنديل</span></div>
-                    <div class="hidden sm:block text-emerald-800">|</div>
-                    <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-teal-500 shadow-sm shadow-teal-500"></span> بإشراف المهندس: <span class="font-bold text-emerald-300">إبراهيم المدادحة</span></div>
+
+
                 </div>
 
                 <div class="bg-rose-500/10 border border-rose-500/30 rounded-2xl p-4 sm:p-5 max-w-xl mx-auto text-rose-300 text-xs sm:text-sm flex items-start gap-3 text-right shadow-inner">
@@ -236,7 +275,7 @@
                 <div class="flex flex-col sm:flex-row justify-between items-center border-b border-emerald-900/60 pb-4 gap-3">
                     <div class="flex flex-col">
                         <span id="quiz-title-tag" class="text-xs font-bold text-emerald-300 bg-emerald-900/40 px-4 py-1.5 rounded-full border border-emerald-700/40 inline-block">امتحان النمذجة الهدف ج</span>
-                        <span class="text-xs text-emerald-300/60 mt-2 px-1">عدد الأسئلة: <span class="text-white font-bold" id="questions-count-label">20 سؤالاً</span> | العلامة الكلية: <span class="text-white font-bold" id="total-score-label">40 علامة</span> (علامتان لكل سؤال)</span>
+                        <span class="text-xs text-emerald-300/60 mt-2 px-1">عدد الأسئلة: <span class="text-white font-bold" id="questions-count-label">20 سؤالاً</span> | العلامة الكلية: <span class="text-white font-bold" id="total-score-label">40 علامة</span>                        (علامتان لكل سؤال)</span>
                     </div>
                     <span id="warning-missing-tag" class="text-xs text-rose-400 bg-rose-500/10 px-3.5 py-1.5 rounded-full border border-rose-500/20 font-bold flex items-center gap-1.5 shrink-0">
                         <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span> ⚠️ يرجى الإجابة على كافة الأسئلة
@@ -334,228 +373,347 @@
     </footer>
 
     <script>
-        const originalQuestionsData = [
-            {
-                id: 1,
-                goal: "الهدف (ج)",
-                question: "ما هو الإجراء الموصى به عند استخدام لوحة المعلومات لضمان عدم تقديم معلومات غير دقيقة؟",
-                options: [
-                    { text: "الاعتماد فقط على أفكار العضو الجديد في الفريق.", isCorrect: false },
-                    { text: "التأكد من عدم وجود بيانات مفقودة أو أخطاء في البيانات قد تؤدي لقرارات غير فعالة.", isCorrect: true },
-                    { text: "إهمال البيانات السالبة تماماً لتوفير الوقت.", isCorrect: false },
-                    { text: "زيادة عدد الألوان العشوائية في الرسوم البيانية.", isCorrect: false }
-                ]
-            },
-            {
-                id: 2,
-                goal: "الهدف (ج)",
-                question: "ماذا يمثل \"مخطط الخط القطري\" عندما يتحرك هبوطاً بمرور الوقت؟",
-                options: [
-                    { text: "استقرار تام في المبيعات.", isCorrect: false },
-                    { text: "حالة شاذة في الربع الأول.", isCorrect: false },
-                    { text: "اتجاه هبوطياً بمرور الوقت.", isCorrect: true },
-                    { text: "اتجاه تصاعدي في الأرباح.", isCorrect: false }
-                ]
-            },
-            {
-                id: 3,
-                goal: "الهدف (ج)",
-                question: "لماذا يُعد من الضروري طرح تساؤلات مثل \"ما هو حجم الشركة؟ وأين تعمل؟ ومن هم منافسوها؟\" أثناء مراجعة لوحة المعلومات؟",
-                options: [
-                    { text: "لتحديد رواتب الموظفين الجدد بدقة.", isCorrect: false },
-                    { text: "لزيادة تكاليف التشغيل السنوية للشركة.", isCorrect: false },
-                    { text: "لإلغاء الحاجة إلى استخدام الجداول المحورية.", isCorrect: false },
-                    { text: "لضمان فهم سياق الشركة ووضعها وعدم إساءة تفسير المعلومات.", isCorrect: true }
-                ]
-            },
-            {
-                id: 4,
-                goal: "الهدف (ج)",
-                question: "كيف تساعد \"عناصر التحكم في النموذج\" (مثل القوائم المنسدلة وعناصر تحكم الزيادة والنقصان) في لوحة المعلومات؟",
-                options: [
-                    { text: "تتسبب في تضليل الإدارة العليا بالمعلومات.", isCorrect: false },
-                    { text: "تمكن المستخدم من التحكم في عرض البيانات وتغيراتها لتسهيل اتخاذ القرار.", isCorrect: true },
-                    { text: "تُستخدم لطباعة المستندات الورقية فقط.", isCorrect: false },
-                    { text: "تمنع التنسيق الشرطي للألوان.", isCorrect: false }
-                ]
-            },
-            {
-                id: 5,
-                goal: "الهدف (ج)",
-                question: "ما هو التأثير السلبي المحتمل لوجود \"روابط خاطئة بين العوامل غير ذات الصلة\" في لوحة المعلومات؟",
-                options: [
-                    { text: "إنشاء معلومات خاطئة قد تؤثر سلباً على قرارات الشركة.", isCorrect: true },
-                    { text: "تحسين دقة القرارات التجارية بشكل ملحوظ.", isCorrect: false },
-                    { text: "منع إنشاء معلومات غير دقيقة.", isCorrect: false },
-                    { text: "تسريع وتيرة العمليات اليومية.", isCorrect: false }
-                ]
-            },
-            {
-                id: 6,
-                goal: "الهدف (ج)",
-                question: "ماذا يتطلب البحث عن الاتجاهات والأنماط والحالات الشاذة في أنشطة الشركة؟",
-                options: [
-                    { text: "اتخاذ قرارات عشوائية سريعة دون مراجعة الحقائق.", isCorrect: false },
-                    { text: "مراعاة جميع المعلومات المتاحة والنظر في جميع الاحتمالات الممكنة لمساعدة الإدارة على التنبؤ.", isCorrect: true },
-                    { text: "الاكتفاء ببيانات شهر يناير فقط وتجاهل باقي الأشهر.", isCorrect: false },
-                    { text: "التركيز على خط فكري واحد وعدم تغيير اتجاه البحث.", isCorrect: false }
-                ]
-            },
-            {
-                id: 7,
-                goal: "الهدف (ج)",
-                question: "ما هو المثال الذي تم ذكره في النص ليوضح حالة \"مرض دانا\" وكيف أثرت على مبيعات الربع الأول؟",
-                options: [
-                    { text: "نمط متكرر وثابت يحدث في كل أسبوع.", isCorrect: false },
-                    { text: "اتجاه تصاعدي في مبيعات الآيس كريم.", isCorrect: false },
-                    { text: "حالة شاذة في البيانات تبدو غير طبيعية بسبب ظروف صحية وتوقف عن العمل مؤقتاً.", isCorrect: true },
-                    { text: "استخدام خاطئ لخطوط المؤشر.", isCorrect: false }
-                ]
-            },
-            {
-                id: 8,
-                goal: "الهدف (ج)",
-                question: "ما هي إحدى الأسئلة الرئيسية التي يجب أن تسألها لنفسك لتقييم ما إذا كانت لوحة المعلومات \"متحيزة أم لا\"؟",
-                options: [
-                    { text: "كم عدد أزرار الراديو الموجودة في الصفحة؟", isCorrect: false },
-                    { text: "هل تأكدت من أنك لم تحدد البيانات لدعم أفكارك المسبقة؟", isCorrect: true },
-                    { text: "ما هو لون الخلفية المستخدم في الجدول؟", isCorrect: false },
-                    { text: "هل الموظفون سعداء برواتبهم؟", isCorrect: false }
-                ]
-            },
-            {
-                id: 9,
-                goal: "الهدف (ج)",
-                question: "ما هو دور \"المخصصات\" (مثل الوقت والميزانية) في عرض لوحة المعلومات؟",
-                options: [
-                    { text: "تلغي تماماً أي احتمال لوجود بيانات شاذة.", isCorrect: false },
-                    { text: "تزيد من حجم عينة البيانات تلقائياً.", isCorrect: false },
-                    { text: "تُستعمل كبديل للرسوم البيانية الديناميكية.", isCorrect: false },
-                    { text: "تعتبر قيوداً يمكن أن تؤثر على اتخاذ القرارات في الشركة.", isCorrect: true }
-                ]
-            },
-            {
-                id: 10,
-                goal: "الهدف (ج)",
-                question: "لماذا يُطلب ألا تكون لوحة المعلومات عبارة عن \"مجموعة عشوائية من المخططات التي لا علاقة لها ببعضها\"؟",
-                options: [
-                    { text: "لأن اللوحة الفعالة يجب أن ترتبط باحتياجات الشركة وتدعم عملية صنع القرار بمدخلات ذات مغزى.", isCorrect: true },
-                    { text: "لتصبح أثقل حجماً عند التحميل على الإنترنت.", isCorrect: false },
-                    { text: "لتكون مطابقة لبيانات الشركات المنافسة تماماً.", isCorrect: false },
-                    { text: "لأن الرسومات العشوائية تزيد من أرباح المبيعات.", isCorrect: false }
-                ]
-            },
-            {
-                id: 11,
-                goal: "الهدف (ج)",
-                question: "ما هي الفائدة من دمج الجداول المحورية مع المخططات البيانية؟",
-                options: [
-                    { text: "إخفاء الأخطاء الإملائية في التقارير المالية.", isCorrect: false },
-                    { text: "تقديم ملخصات بيانات دقيقة ومساعدة المستخدمين على رؤية الصورة بشكل أفضل لاتخاذ قرارات فعالة.", isCorrect: true },
-                    { text: "تصعيب عملية استخراج الأنماط على الإدارة.", isCorrect: false },
-                    { text: "تقليل تفاعل المستخدم مع لوحة المعلومات.", isCorrect: false }
-                ]
-            },
-            {
-                id: 12,
-                goal: "الهدف (ج)",
-                question: "ماذا تعني عبارة \"هل هناك أي عوامل بيئية لدى الشركة يمكن أن تؤثر على دقة المعلومات؟\" في سياق مراجعة لوحة المعلومات؟",
-                options: [
-                    { text: "قياس درجة حرارة الغرفة التي يعمل بها موظفو الإدارة.", isCorrect: false },
-                    { text: "تقليل استهلاك الورق داخل مكاتب الشركة.", isCorrect: false },
-                    { text: "الانتباه للعوامل المحيطة التي قد تغير من مسار أو نتائج البيانات وتؤثر على قرارات الشركة.", isCorrect: true },
-                    { text: "مراقبة حركة مرور السيارات في الشوارع الرئيسية.", isCorrect: false }
-                ]
-            },
-            {
-                id: 13,
-                goal: "الهدف (ج)",
-                question: "كيف يُساهم \"التنسيق الشرطي\" في فاعلية عرض لوحة المعلومات؟",
-                options: [
-                    { text: "يلفت الانتباه إلى معلومات محددة وتحديد نظام الألوان لتسهيل الفهم.", isCorrect: true },
-                    { text: "يمنع المستخدم من تغيير القيم في القوائم المنسدلة.", isCorrect: false },
-                    { text: "يقوم بحذف البيانات الشاذة تلقائياً من الجداول.", isCorrect: false },
-                    { text: "يثبت حجم الرسوم البيانية على شاشة واحدة.", isCorrect: false }
-                ]
-            },
-            {
-                id: 14,
-                goal: "الهدف (ج)",
-                question: "في سياق تحليل جدول المبيعات (مثل بيانات عام 2022)، ماذا كان يمثل انخفاض مبيعات الربع الأول لبعض الأعضاء مثل \"دانا\"؟",
-                options: [
-                    { text: "خطأ في النظام البرمجى للشركة.", isCorrect: false },
-                    { text: "اتجاه عام لجميع الموظفين طوال العام.", isCorrect: false },
-                    { text: "نمط منتظم يتكرر في نفس الموعد كل سنة.", isCorrect: false },
-                    { text: "ظروف خاصة (مثل المرض) أدت لنتائج غير طبيعية تم تفسيرها لاحقاً.", isCorrect: true }
-                ]
-            },
-            {
-                id: 15,
-                goal: "الهدف (ج)",
-                question: "ما هي إحدى النطاقات التي يجب التأكد منها لتجنب تضليل صانعي القرار؟",
-                options: [
-                    { text: "التأكد من شمولية العينة وعدم التأثر بحجم عينة صغير قد يؤدي إلى سوء تفسير.", isCorrect: true },
-                    { text: "إلغاء استخدام الجداول العادية والاعتماد على النصوص فقط.", isCorrect: false },
-                    { text: "إخفاء أسباب القرارات التي اتخذتها الإدارة سابقاً.", isCorrect: false },
-                    { text: "ترك لوحة المعلومات دون أي أزرار تفاعلية.", isCorrect: false }
-                ]
-            },
-            {
-                id: 16,
-                goal: "الهدف (ج)",
-                question: "ما هو التوصية الأساسية للمحترفين والعوام عند تحليل البيانات بحسب النص الفلسفي؟",
-                options: [
-                    { text: "الثقة المطلقة بنسبة 100% في كل رقم يظهر في لوحة المعلومات.", isCorrect: false },
-                    { text: "الإقرار بأن تحليل البيانات لا يُفهم بشكل صحيح بنسبة 100% طوال الوقت حتى من قِبل المحترفين.", isCorrect: true },
-                    { text: "تجنب قراءة الجداول المحورية نهائياً.", isCorrect: false },
-                    { text: "الاعتماد على الحدس الشخصي بدلاً من البيانات.", isCorrect: false }
-                ]
-            },
-            {
-                id: 17,
-                goal: "الهدف (ج)",
-                question: "ما هو الغرض من استخدام أزرار الراديو ومربعات الاختيار (الميزات التفاعلية)؟",
-                options: [
-                    { text: "مساعدة المستخدم على رؤية البيانات وفهمها بعمق أكبر من خلال التفاعل معها.", isCorrect: true },
-                    { text: "تقليل جودة عرض الرسوم البيانية الديناميكية.", isCorrect: false },
-                    { text: "زيادة عدد الأخطاء المتعمدة في التقارير.", isCorrect: false },
-                    { text: "تغيير نشاط الشركة التجاري بشكل فجائي.", isCorrect: false }
-                ]
-            },
-            {
-                id: 18,
-                goal: "الهدف (ج)",
-                question: "لماذا تُشهد محلات السوبر ماركت ومحلات الهدايا زيادة في المبيعات قبل العطلات والمهرجانات مباشرة؟",
-                options: [
-                    { text: "لأنه يمثل نمطاً متكرراً في أوقات محددة من السنة يمكن التنبؤ به.", isCorrect: true },
-                    { text: "لأنه يعتبر حالة شاذة لن تتكرر أبداً.", isCorrect: false },
-                    { text: "بسبب سوء الأحوال الجوية وارتفاع الحرارة.", isCorrect: false },
-                    { text: "بسبب نقص المخزون المفاجئ في الأسواق.", isCorrect: false }
-                ]
-            },
-            {
-                id: 19,
-                goal: "الهدف (ج)",
-                question: "ماذا يُقصد بأن تكون لوحة المعلومات \"ليست متحيزة\"؟",
-                options: [
-                    { text: "أن تحتوي على عدد قليل جداً من الصفوف والأعمدة.", isCorrect: false },
-                    { text: "ألا تحتوي على تفسيرات خاطئة أو استنتاجات غير دقيقة تخدم فكرة مسبقة.", isCorrect: true },
-                    { text: "أن تكون ألوانها محايدة باللونين الأبيض والأسود فقط.", isCorrect: false },
-                    { text: "ألا تُعرض على الإدارة العليا للشركة.", isCorrect: false }
-                ]
-            },
-            {
-                id: 20,
-                goal: "الهدف (ج)",
-                question: "ما هي الخطوة الأولى التي يُنصح بالبدء بها عند مراجعة لوحة المعلومات الخاصة بك لاتخاذ قرارات الشركة؟",
-                options: [
-                    { text: "التفكير في لوحة التحكم التي تم إنشاؤها ومدى قدرة الرسوم البيانية والاتجاهات المستخلصة على دعم اتخاذ القرار.", isCorrect: true },
-                    { text: "حذف جميع البيانات القديمة للعام السابق.", isCorrect: false },
-                    { text: "تعديل ميزانية الشركة قبل قراءة النتائج.", isCorrect: false },
-                    { text: "تغيير أسماء جميع الموظفين في الجدول.", isCorrect: false }
-                ]
-            }
-        ];
+        const originalQuestionsData = [{
+            id: 1,
+            goal: "الهدف (ج)",
+            question: "ما هو الإجراء الموصى به عند استخدام لوحة المعلومات لضمان عدم تقديم معلومات غير دقيقة؟",
+            options: [{
+                text: "الاعتماد فقط على أفكار العضو الجديد في الفريق.",
+                isCorrect: false
+            }, {
+                text: "التأكد من عدم وجود بيانات مفقودة أو أخطاء في البيانات قد تؤدي لقرارات غير فعالة.",
+                isCorrect: true
+            }, {
+                text: "إهمال البيانات السالبة تماماً لتوفير الوقت.",
+                isCorrect: false
+            }, {
+                text: "زيادة عدد الألوان العشوائية في الرسوم البيانية.",
+                isCorrect: false
+            }]
+        }, {
+            id: 2,
+            goal: "الهدف (ج)",
+            question: "ماذا يمثل \"مخطط الخط القطري\" عندما يتحرك هبوطاً بمرور الوقت؟",
+            options: [{
+                text: "استقرار تام في المبيعات.",
+                isCorrect: false
+            }, {
+                text: "حالة شاذة في الربع الأول.",
+                isCorrect: false
+            }, {
+                text: "اتجاه هبوطياً بمرور الوقت.",
+                isCorrect: true
+            }, {
+                text: "اتجاه تصاعدي في الأرباح.",
+                isCorrect: false
+            }]
+        }, {
+            id: 3,
+            goal: "الهدف (ج)",
+            question: "لماذا يُعد من الضروري طرح تساؤلات مثل \"ما هو حجم الشركة؟ وأين تعمل؟ ومن هم منافسوها؟\" أثناء مراجعة لوحة المعلومات؟",
+            options: [{
+                text: "لتحديد رواتب الموظفين الجدد بدقة.",
+                isCorrect: false
+            }, {
+                text: "لزيادة تكاليف التشغيل السنوية للشركة.",
+                isCorrect: false
+            }, {
+                text: "لإلغاء الحاجة إلى استخدام الجداول المحورية.",
+                isCorrect: false
+            }, {
+                text: "لضمان فهم سياق الشركة ووضعها وعدم إساءة تفسير المعلومات.",
+                isCorrect: true
+            }]
+        }, {
+            id: 4,
+            goal: "الهدف (ج)",
+            question: "كيف تساعد \"عناصر التحكم في النموذج\" (مثل القوائم المنسدلة وعناصر تحكم الزيادة والنقصان) في لوحة المعلومات؟",
+            options: [{
+                text: "تتسبب في تضليل الإدارة العليا بالمعلومات.",
+                isCorrect: false
+            }, {
+                text: "تمكن المستخدم من التحكم في عرض البيانات وتغيراتها لتسهيل اتخاذ القرار.",
+                isCorrect: true
+            }, {
+                text: "تُستخدم لطباعة المستندات الورقية فقط.",
+                isCorrect: false
+            }, {
+                text: "تمنع التنسيق الشرطي للألوان.",
+                isCorrect: false
+            }]
+        }, {
+            id: 5,
+            goal: "الهدف (ج)",
+            question: "ما هو التأثير السلبي المحتمل لوجود \"روابط خاطئة بين العوامل غير ذات الصلة\" في لوحة المعلومات؟",
+            options: [{
+                text: "إنشاء معلومات خاطئة قد تؤثر سلباً على قرارات الشركة.",
+                isCorrect: true
+            }, {
+                text: "تحسين دقة القرارات التجارية بشكل ملحوظ.",
+                isCorrect: false
+            }, {
+                text: "منع إنشاء معلومات غير دقيقة.",
+                isCorrect: false
+            }, {
+                text: "تسريع وتيرة العمليات اليومية.",
+                isCorrect: false
+            }]
+        }, {
+            id: 6,
+            goal: "الهدف (ج)",
+            question: "ماذا يتطلب البحث عن الاتجاهات والأنماط والحالات الشاذة في أنشطة الشركة؟",
+            options: [{
+                text: "اتخاذ قرارات عشوائية سريعة دون مراجعة الحقائق.",
+                isCorrect: false
+            }, {
+                text: "مراعاة جميع المعلومات المتاحة والنظر في جميع الاحتمالات الممكنة لمساعدة الإدارة على التنبؤ.",
+                isCorrect: true
+            }, {
+                text: "الاكتفاء ببيانات شهر يناير فقط وتجاهل باقي الأشهر.",
+                isCorrect: false
+            }, {
+                text: "التركيز على خط فكري واحد وعدم تغيير اتجاه البحث.",
+                isCorrect: false
+            }]
+        }, {
+            id: 7,
+            goal: "الهدف (ج)",
+            question: "ما هو المثال الذي تم ذكره في النص ليوضح حالة \"مرض دانا\" وكيف أثرت على مبيعات الربع الأول؟",
+            options: [{
+                text: "نمط متكرر وثابت يحدث في كل أسبوع.",
+                isCorrect: false
+            }, {
+                text: "اتجاه تصاعدي في مبيعات الآيس كريم.",
+                isCorrect: false
+            }, {
+                text: "حالة شاذة في البيانات تبدو غير طبيعية بسبب ظروف صحية وتوقف عن العمل مؤقتاً.",
+                isCorrect: true
+            }, {
+                text: "استخدام خاطئ لخطوط المؤشر.",
+                isCorrect: false
+            }]
+        }, {
+            id: 8,
+            goal: "الهدف (ج)",
+            question: "ما هي إحدى الأسئلة الرئيسية التي يجب أن تسألها لنفسك لتقييم ما إذا كانت لوحة المعلومات \"متحيزة أم لا\"؟",
+            options: [{
+                text: "كم عدد أزرار الراديو الموجودة في الصفحة؟",
+                isCorrect: false
+            }, {
+                text: "هل تأكدت من أنك لم تحدد البيانات لدعم أفكارك المسبقة؟",
+                isCorrect: true
+            }, {
+                text: "ما هو لون الخلفية المستخدم في الجدول؟",
+                isCorrect: false
+            }, {
+                text: "هل الموظفون سعداء برواتبهم؟",
+                isCorrect: false
+            }]
+        }, {
+            id: 9,
+            goal: "الهدف (ج)",
+            question: "ما هو دور \"المخصصات\" (مثل الوقت والميزانية) في عرض لوحة المعلومات؟",
+            options: [{
+                text: "تلغي تماماً أي احتمال لوجود بيانات شاذة.",
+                isCorrect: false
+            }, {
+                text: "تزيد من حجم عينة البيانات تلقائياً.",
+                isCorrect: false
+            }, {
+                text: "تُستعمل كبديل للرسوم البيانية الديناميكية.",
+                isCorrect: false
+            }, {
+                text: "تعتبر قيوداً يمكن أن تؤثر على اتخاذ القرارات في الشركة.",
+                isCorrect: true
+            }]
+        }, {
+            id: 10,
+            goal: "الهدف (ج)",
+            question: "لماذا يُطلب ألا تكون لوحة المعلومات عبارة عن \"مجموعة عشوائية من المخططات التي لا علاقة لها ببعضها\"؟",
+            options: [{
+                text: "لأن اللوحة الفعالة يجب أن ترتبط باحتياجات الشركة وتدعم عملية صنع القرار بمدخلات ذات مغزى.",
+                isCorrect: true
+            }, {
+                text: "لتصبح أثقل حجماً عند التحميل على الإنترنت.",
+                isCorrect: false
+            }, {
+                text: "لتكون مطابقة لبيانات الشركات المنافسة تماماً.",
+                isCorrect: false
+            }, {
+                text: "لأن الرسومات العشوائية تزيد من أرباح المبيعات.",
+                isCorrect: false
+            }]
+        }, {
+            id: 11,
+            goal: "الهدف (ج)",
+            question: "ما هي الفائدة من دمج الجداول المحورية مع المخططات البيانية؟",
+            options: [{
+                text: "إخفاء الأخطاء الإملائية في التقارير المالية.",
+                isCorrect: false
+            }, {
+                text: "تقديم ملخصات بيانات دقيقة ومساعدة المستخدمين على رؤية الصورة بشكل أفضل لاتخاذ قرارات فعالة.",
+                isCorrect: true
+            }, {
+                text: "تصعيب عملية استخراج الأنماط على الإدارة.",
+                isCorrect: false
+            }, {
+                text: "تقليل تفاعل المستخدم مع لوحة المعلومات.",
+                isCorrect: false
+            }]
+        }, {
+            id: 12,
+            goal: "الهدف (ج)",
+            question: "ماذا تعني عبارة \"هل هناك أي عوامل بيئية لدى الشركة يمكن أن تؤثر على دقة المعلومات؟\" في سياق مراجعة لوحة المعلومات؟",
+            options: [{
+                text: "قياس درجة حرارة الغرفة التي يعمل بها موظفو الإدارة.",
+                isCorrect: false
+            }, {
+                text: "تقليل استهلاك الورق داخل مكاتب الشركة.",
+                isCorrect: false
+            }, {
+                text: "الانتباه للعوامل المحيطة التي قد تغير من مسار أو نتائج البيانات وتؤثر على قرارات الشركة.",
+                isCorrect: true
+            }, {
+                text: "مراقبة حركة مرور السيارات في الشوارع الرئيسية.",
+                isCorrect: false
+            }]
+        }, {
+            id: 13,
+            goal: "الهدف (ج)",
+            question: "كيف يُساهم \"التنسيق الشرطي\" في فاعلية عرض لوحة المعلومات؟",
+            options: [{
+                text: "يلفت الانتباه إلى معلومات محددة وتحديد نظام الألوان لتسهيل الفهم.",
+                isCorrect: true
+            }, {
+                text: "يمنع المستخدم من تغيير القيم في القوائم المنسدلة.",
+                isCorrect: false
+            }, {
+                text: "يقوم بحذف البيانات الشاذة تلقائياً من الجداول.",
+                isCorrect: false
+            }, {
+                text: "يثبت حجم الرسوم البيانية على شاشة واحدة.",
+                isCorrect: false
+            }]
+        }, {
+            id: 14,
+            goal: "الهدف (ج)",
+            question: "في سياق تحليل جدول المبيعات (مثل بيانات عام 2022)، ماذا كان يمثل انخفاض مبيعات الربع الأول لبعض الأعضاء مثل \"دانا\"؟",
+            options: [{
+                text: "خطأ في النظام البرمجى للشركة.",
+                isCorrect: false
+            }, {
+                text: "اتجاه عام لجميع الموظفين طوال العام.",
+                isCorrect: false
+            }, {
+                text: "نمط منتظم يتكرر في نفس الموعد كل سنة.",
+                isCorrect: false
+            }, {
+                text: "ظروف خاصة (مثل المرض) أدت لنتائج غير طبيعية تم تفسيرها لاحقاً.",
+                isCorrect: true
+            }]
+        }, {
+            id: 15,
+            goal: "الهدف (ج)",
+            question: "ما هي إحدى النطاقات التي يجب التأكد منها لتجنب تضليل صانعي القرار؟",
+            options: [{
+                text: "التأكد من شمولية العينة وعدم التأثر بحجم عينة صغير قد يؤدي إلى سوء تفسير.",
+                isCorrect: true
+            }, {
+                text: "إلغاء استخدام الجداول العادية والاعتماد على النصوص فقط.",
+                isCorrect: false
+            }, {
+                text: "إخفاء أسباب القرارات التي اتخذتها الإدارة سابقاً.",
+                isCorrect: false
+            }, {
+                text: "ترك لوحة المعلومات دون أي أزرار تفاعلية.",
+                isCorrect: false
+            }]
+        }, {
+            id: 16,
+            goal: "الهدف (ج)",
+            question: "ما هو التوصية الأساسية للمحترفين والعوام عند تحليل البيانات بحسب النص الفلسفي؟",
+            options: [{
+                text: "الثقة المطلقة بنسبة 100% في كل رقم يظهر في لوحة المعلومات.",
+                isCorrect: false
+            }, {
+                text: "الإقرار بأن تحليل البيانات لا يُفهم بشكل صحيح بنسبة 100% طوال الوقت حتى من قِبل المحترفين.",
+                isCorrect: true
+            }, {
+                text: "تجنب قراءة الجداول المحورية نهائياً.",
+                isCorrect: false
+            }, {
+                text: "الاعتماد على الحدس الشخصي بدلاً من البيانات.",
+                isCorrect: false
+            }]
+        }, {
+            id: 17,
+            goal: "الهدف (ج)",
+            question: "ما هو الغرض من استخدام أزرار الراديو ومربعات الاختيار (الميزات التفاعلية)؟",
+            options: [{
+                text: "مساعدة المستخدم على رؤية البيانات وفهمها بعمق أكبر من خلال التفاعل معها.",
+                isCorrect: true
+            }, {
+                text: "تقليل جودة عرض الرسوم البيانية الديناميكية.",
+                isCorrect: false
+            }, {
+                text: "زيادة عدد الأخطاء المتعمدة في التقارير.",
+                isCorrect: false
+            }, {
+                text: "تغيير نشاط الشركة التجاري بشكل فجائي.",
+                isCorrect: false
+            }]
+        }, {
+            id: 18,
+            goal: "الهدف (ج)",
+            question: "لماذا تُشهد محلات السوبر ماركت ومحلات الهدايا زيادة في المبيعات قبل العطلات والمهرجانات مباشرة؟",
+            options: [{
+                text: "لأنه يمثل نمطاً متكرراً في أوقات محددة من السنة يمكن التنبؤ به.",
+                isCorrect: true
+            }, {
+                text: "لأنه يعتبر حالة شاذة لن تتكرر أبداً.",
+                isCorrect: false
+            }, {
+                text: "بسبب سوء الأحوال الجوية وارتفاع الحرارة.",
+                isCorrect: false
+            }, {
+                text: "بسبب نقص المخزون المفاجئ في الأسواق.",
+                isCorrect: false
+            }]
+        }, {
+            id: 19,
+            goal: "الهدف (ج)",
+            question: "ماذا يُقصد بأن تكون لوحة المعلومات \"ليست متحيزة\"؟",
+            options: [{
+                text: "أن تحتوي على عدد قليل جداً من الصفوف والأعمدة.",
+                isCorrect: false
+            }, {
+                text: "ألا تحتوي على تفسيرات خاطئة أو استنتاجات غير دقيقة تخدم فكرة مسبقة.",
+                isCorrect: true
+            }, {
+                text: "أن تكون ألوانها محايدة باللونين الأبيض والأسود فقط.",
+                isCorrect: false
+            }, {
+                text: "ألا تُعرض على الإدارة العليا للشركة.",
+                isCorrect: false
+            }]
+        }, {
+            id: 20,
+            goal: "الهدف (ج)",
+            question: "ما هي الخطوة الأولى التي يُنصح بالبدء بها عند مراجعة لوحة المعلومات الخاصة بك لاتخاذ قرارات الشركة؟",
+            options: [{
+                text: "التفكير في لوحة التحكم التي تم إنشاؤها ومدى قدرة الرسوم البيانية والاتجاهات المستخلصة على دعم اتخاذ القرار.",
+                isCorrect: true
+            }, {
+                text: "حذف جميع البيانات القديمة للعام السابق.",
+                isCorrect: false
+            }, {
+                text: "تعديل ميزانية الشركة قبل قراءة النتائج.",
+                isCorrect: false
+            }, {
+                text: "تغيير أسماء جميع الموظفين في الجدول.",
+                isCorrect: false
+            }]
+        }];
 
         let studentFullName = "";
         let userAnswers = {};
@@ -596,7 +754,7 @@
             document.getElementById("result-icon-container").className = "inline-block p-6 rounded-full mb-1 bg-rose-500/20 text-rose-400 border border-rose-500/30";
             document.getElementById("result-heading").textContent = "تم إنهاء الاختبار بسبب رصد مغادرة الصفحة (0)";
             document.getElementById("result-subheading").textContent = "وفقاً لتعليمات الأمان، تم اعتماد النتيجة صفر نظراً لمغادرة تبويب الامتحان.";
-            
+
             document.getElementById("result-actions").innerHTML = `
                 <button onclick="location.reload()" class="px-8 py-3.5 bg-emerald-950 hover:bg-emerald-900 text-emerald-200 font-bold rounded-2xl text-xs transition-all border border-emerald-800">
                     إعادة المحاولة 🔄
@@ -644,7 +802,7 @@
             shuffledQuestions.forEach((q, index) => {
                 const qNum = index + 1;
                 const shuffledOpts = shuffleArray(q.options);
-                
+
                 const card = document.createElement("div");
                 card.className = "ultra-glass p-5 sm:p-6 rounded-2xl space-y-4 border border-emerald-900/60 transition-all";
                 card.id = `question-card-${q.id}`;
@@ -713,7 +871,10 @@
 
             if (answeredCount < originalQuestionsData.length) {
                 if (firstUnanswered) {
-                    firstUnanswered.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    firstUnanswered.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
                 }
                 return;
             }
@@ -813,7 +974,10 @@
 
             if (answeredCount < wrongQuestionsList.length) {
                 if (firstUnanswered) {
-                    firstUnanswered.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    firstUnanswered.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
                 }
                 return;
             }
@@ -846,7 +1010,7 @@
             document.getElementById("res-final-percentage").textContent = `${percentage}%`;
             document.getElementById("res-total-score-num").textContent = finalScore;
             document.getElementById("res-max-score-num").textContent = maxScore;
-            
+
             setTimeout(() => {
                 document.getElementById("res-progress-bar").style.width = `${percentage}%`;
             }, 200);
@@ -860,7 +1024,13 @@
                 heading.textContent = "أداء مذهل وممتاز! 🌟";
                 subheading.textContent = `أهلاً بكِ يا ${studentFullName}. لقد أبدعتِ تماماً في إظهار مهاراتك العالية في نمذجة البيانات وتحليلها بامتياز.`;
                 if (typeof confetti === 'function') {
-                    confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+                    confetti({
+                        particleCount: 120,
+                        spread: 80,
+                        origin: {
+                            y: 0.6
+                        }
+                    });
                 }
             } else if (percentage >= 50) {
                 iconContainer.className = "inline-block p-6 rounded-full mb-1 bg-teal-900/40 text-teal-400 border border-teal-700/40";
